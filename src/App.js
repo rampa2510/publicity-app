@@ -22,12 +22,13 @@ import { createStackNavigator } from 'react-navigation-stack'
 
 //========================================================================================
 /*                                                                                      *
- *                                     import views                                     *
+ *                                     import views and config                          *
  *                                                                                      */
 //========================================================================================
 
 import SplashScreen from './Views/SplashScreen'
 import SelectCollege from './Views/SelectCollege'
+import  config from './config/color'
 
 //########################################################################################
 
@@ -40,7 +41,7 @@ const AppStack = createStackNavigator({
   
   defaultNavigationOptions: {
     headerStyle: {
-      backgroundColor: '#0099ff',
+      backgroundColor: config.primaryColor,
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
