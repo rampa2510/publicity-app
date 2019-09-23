@@ -27,7 +27,7 @@ class index extends PureComponent {
   render() {
     // console.log(this.props)
     return (
-      <TouchableOpacity onPress={()=>this.props.navigation.navigate("SelectPost")}>
+      <TouchableOpacity onPress={()=>this.props.navigation.navigate("SelectPost",{name:this.props.name})}>
         <Card>
           <CardItem>
             <Image source={CollIcon} style={{height: 30,width: 30,marginRight: 10,marginLeft: 10}} resizeMode={"cover"} />

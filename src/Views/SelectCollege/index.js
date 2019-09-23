@@ -5,7 +5,7 @@
 //========================================================================================
 
 import React, { PureComponent } from 'react'
-import { View,FlatList,StyleSheet,Alert,Text } from 'react-native'
+import { View,FlatList,StyleSheet,Alert,Text,ScrollView } from 'react-native'
 
 //########################################################################################
 
@@ -119,6 +119,25 @@ export default class index extends PureComponent {
     }
   }
 
+  renderSearchBar=()=>{
+    return(
+      <View style={styles.searchBarContainer}>
+        <Hoshi
+          label={'Search'}
+          // this is used as active border color
+          borderColor={config.primaryColor}
+          // active border height
+          borderHeight={3}
+          inputPadding={16}
+          // this is used to set backgroundColor of label mask.
+          // please pass the backgroundColor of your TextInput container.
+          backgroundColor={config.backgroundColor}
+          value={this.state.value}
+          onChangeText={(text)=>this.searchFilterFunction(text)}
+        />
+      </View>
+    )
+  }
 
   render(){
 
@@ -136,37 +155,23 @@ export default class index extends PureComponent {
     if(this.state.isLoading)
       return <SpinnerScreen message="Loading colleges" />
 
-    if(!this.state.data.length)
+    if(!this.state.data.length && !this.state.value.length)
       return <EmptyScreen message="No data to show" />
 
     return(
       <View style={styles.mainContainer}>
 
-      <View style={styles.searchBarContainer}>
-        <Hoshi
-          label={'Search'}
-          // this is used as active border color
-          borderColor={config.primaryColor}
-          // active border height
-          borderHeight={3}
-          inputPadding={16}
-          // this is used to set backgroundColor of label mask.
-          // please pass the backgroundColor of your TextInput container.
-          backgroundColor={config.backgroundColor}
-          value={this.state.value}
-          onChangeText={(text)=>this.searchFilterFunction(text)}
-        />
-      </View>
-      
-      <FlatList
+      {/* <ScrollView> */}
+        <FlatList
         data={this.state.data}
         renderItem={({item})=> <CollegeCard name={item.name} />}
+        ListHeaderComponent={this.renderSearchBar()}
         keyExtractor={(item)=>item._id}
         refreshing={this.state.refreshing}
         onRefresh={this.handleRefresh}
         />
-
-        <Footer />
+      {/* </ScrollView> */}
+      
       </View>
     )
   }
