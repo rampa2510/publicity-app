@@ -28,7 +28,7 @@ import Fetch from '../../Services/fetchDetails'
 import SpinnerScreen from '../SpinnerScreen'
 import EmptyScreen from '../EmptyScreenView'
 import PostCard from '../../Components/PostCard'
-import Footer from '../../Components/Footer'
+// import Footer from '../../Components/Footer'
 import NetInfo from "@react-native-community/netinfo";
 //########################################################################################
 
@@ -107,7 +107,6 @@ export default class index extends PureComponent {
     try {
       let data = await this.fetch.fetchPosts(this.collegeName)
       this.dataArr=data
-      console.log(data)
       this.setState({isLoading:false,refreshing:false,data}) 
     } catch (error) {
       console.log(error)
@@ -132,7 +131,7 @@ export default class index extends PureComponent {
     if(this.state.isLoading)
       return <SpinnerScreen message="Loading colleges" />
 
-    if(!this.state.data.length)
+    if(!this.state.data.length && !this.state.value.length)
       return <EmptyScreen message="No data to show" />
       
       

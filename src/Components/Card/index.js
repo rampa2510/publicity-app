@@ -24,7 +24,7 @@ export default class Card extends PureComponent {
 
   render() {
     return (
-      <View style={styles.containerStyle}>
+      <View style={[styles.containerStyle,this.props.style]}>
         {this.props.children}
       </View>
     )

@@ -24,7 +24,6 @@ export default class Fetch{
       let body={
         collegeName
       }
-      console.log(body)
       body=JSON.stringify(body)
       let response = await fetch(url,{
         method:"POST",

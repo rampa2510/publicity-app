@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: config.backgroundColor,
-    position: 'absolute', left: 0, right: 0, bottom: "7%"
+    position: 'absolute', left: 0, right: 0, bottom: "4%"
   
   },
   footerText:{

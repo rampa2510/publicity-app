@@ -30,14 +30,15 @@ import SplashScreen from './Views/SplashScreen'
 import SelectCollege from './Views/SelectCollege'
 import config from './config/general'
 import SelectPost from './Views/SelectPost'
-
+import Details from './Views/ShowDetails'
 //########################################################################################
 
 useScreens()
 
 const AppStack = createStackNavigator({
   SelectCollege,
-  SelectPost
+  SelectPost,
+  Details
 },{
   initialRouteName:"SelectCollege",
   
