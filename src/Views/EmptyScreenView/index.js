@@ -1,6 +1,15 @@
-import React, { PureComponent } from 'react'
-import { View,ActivityIndicator,Text,StyleSheet } from 'react-native'
+//========================================================================================
+/*                                                                                      *
+ *                               import react dependencies                              *
+ *                                                                                      */
+//========================================================================================
 
+import React, { PureComponent } from 'react'
+import { View,Text,StyleSheet } from 'react-native'
+
+//########################################################################################
+
+// import config
 import config from '../../config/general'
 
 var styles = StyleSheet.create({
@@ -29,15 +38,10 @@ var styles = StyleSheet.create({
 })
 
 
-export default class Spinner extends PureComponent {
+export default class EmptyScreen extends PureComponent {
   render() {
     return (
-      // <View style={styles.spinnerContainer}>
-      //   
-      //   <Text style={styles.messageStyle}>{this.props.message} </Text>
-      // </View>
       <View style={styles.container}>
-        <ActivityIndicator color="#D3D3D3" size='large' />
       <Text style={styles.welcome}>
         {this.props.message}
       </Text>

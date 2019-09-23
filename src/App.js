@@ -28,14 +28,16 @@ import { createStackNavigator } from 'react-navigation-stack'
 
 import SplashScreen from './Views/SplashScreen'
 import SelectCollege from './Views/SelectCollege'
-import  config from './config/color'
+import config from './config/general'
+import SelectPost from './Views/SelectPost'
 
 //########################################################################################
 
 useScreens()
 
 const AppStack = createStackNavigator({
-  SelectCollege
+  SelectCollege,
+  SelectPost
 },{
   initialRouteName:"SelectCollege",
   

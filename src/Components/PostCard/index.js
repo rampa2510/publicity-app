@@ -17,7 +17,7 @@ import { withNavigation } from 'react-navigation'
 
 import Card from '../Card'
 import CardItem from '../CardItem'
-import CollIcon from '../../Assets/collegeIcon.webp'
+import postIcon from '../../Assets/job.webp'
 //########################################################################################
 
 // import config
@@ -27,10 +27,10 @@ class index extends PureComponent {
   render() {
     // console.log(this.props)
     return (
-      <TouchableOpacity onPress={()=>this.props.navigation.navigate("SelectPost")}>
+      <TouchableOpacity onPress={()=>this.props.navigation.navigate("SelectPost",{name:this.props.name})}>
         <Card>
           <CardItem>
-            <Image source={CollIcon} style={{height: 30,width: 30,marginRight: 10,marginLeft: 10}} resizeMode={"cover"} />
+            <Image source={postIcon} style={{height: 30,width: 30,marginRight: 10,marginLeft: 10}} resizeMode={"cover"} />
             <Text style={styles.textStyle}> {this.props.name} </Text>
           </CardItem>
         </Card>
