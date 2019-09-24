@@ -76,7 +76,8 @@ export default class index extends PureComponent {
   handleRefresh=()=>{
     this.setState({
       refreshing:true,
-      data:[]
+      data:[],
+      value:''
     },()=>{
       this.fetchData(true)
     })
@@ -155,8 +156,8 @@ export default class index extends PureComponent {
     if(this.state.isLoading)
       return <SpinnerScreen message="Loading colleges" />
 
-    if(!this.state.data.length && !this.state.value.length)
-      return <EmptyScreen message="No data to show" />
+    // if(!this.state.data.length && !this.state.value.length)
+    //   return <EmptyScreen message="No data to show" />
 
     return(
       <View style={styles.mainContainer}>
@@ -169,6 +170,7 @@ export default class index extends PureComponent {
         keyExtractor={(item)=>item._id}
         refreshing={this.state.refreshing}
         onRefresh={this.handleRefresh}
+        ListEmptyComponent={<View style={{marginTop:40}}><EmptyScreen message="No data to show" /></View>}
         />
       {/* </ScrollView> */}
       
@@ -180,7 +182,8 @@ export default class index extends PureComponent {
 
 const styles = StyleSheet.create({
   mainContainer:{
-    backgroundColor: config.backgroundColor
+    backgroundColor: config.backgroundColor,
+    height: "100%"
   },
   searchBarContainer:{
     width: "90%",

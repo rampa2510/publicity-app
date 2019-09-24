@@ -26,12 +26,18 @@ import config from '../../config/general'
 class index extends PureComponent {
   render() {
     // console.log(this.props)
+    let name = this.props.name
+
+    if(name.length>22){
+      name = name.slice(0,22)
+      name+=" ..."
+    }
     return (
       <TouchableOpacity onPress={()=>this.props.navigation.navigate("SelectPost",{name:this.props.name})}>
         <Card>
           <CardItem>
             <Image source={CollIcon} style={{height: 30,width: 30,marginRight: 10,marginLeft: 10}} resizeMode={"cover"} />
-            <Text style={styles.textStyle}> {this.props.name} </Text>
+            <Text style={styles.textStyle}> {name} </Text>
           </CardItem>
         </Card>
       </TouchableOpacity>

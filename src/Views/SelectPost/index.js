@@ -75,7 +75,9 @@ export default class index extends PureComponent {
   handleRefresh=()=>{
     this.setState({
       refreshing:true,
-      data:[]
+      data:[],
+      value:''
+
     },()=>{
       this.fetchData(true)
     })
@@ -86,7 +88,7 @@ export default class index extends PureComponent {
       value: text,
     });
     const data = this.dataArr.filter(item => {      
-      const itemData = item.name.toLowerCase()
+      const itemData = item.post.toLowerCase()
       
        const textData = text.toLowerCase();
         

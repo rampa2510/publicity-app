@@ -4,7 +4,7 @@
  *                                                                                      */
 //========================================================================================
 import React, { PureComponent } from 'react'
-import { View,StyleSheet,Image,Text } from 'react-native'
+import { View,StyleSheet,Image,Text,Linking,TouchableOpacity,Platform } from 'react-native'
 //########################################################################################
 
 //========================================================================================
@@ -34,9 +34,39 @@ export default class index extends PureComponent {
     title: 'Details'
   }
 
+  UNSAFE_componentWillMount(){
+    this.details = this.props.navigation.getParam("details",null)
+  }
+
+  openCall=()=>{
+    Linking.openURL(`tel:${this.details.phone}`)
+  }
+
   render() {
-    const details = this.props.navigation.getParam("details",null)
+    const details = this.details
     // console.log(details)
+    let name = details.name
+
+    if(name.length>22){
+      name = name.slice(0,22)
+      name+=" ..."
+    }
+
+    let college = details.college
+
+    if(college.length>22){
+      college = college.slice(0,22)
+      college+=" ..."
+    }
+
+
+    let post = details.post
+
+    if(post.length>22){
+      post = post.slice(0,22)
+      post+=" ..."
+    }
+
     return (
       <View style={styles.mainContainer}>
         <Card style={styles.card}>
@@ -48,18 +78,21 @@ export default class index extends PureComponent {
 
           <CardItem>
             <Image source={postIcon} style={{height: 30,width: 30,marginRight: 10,marginLeft: 10}} resizeMode={"cover"} />
-            <Text style={styles.textStyle}> {details.post} </Text>
+            <Text style={styles.textStyle}> {post} </Text>
           </CardItem>
 
           <CardItem>
             <Image source={CollIcon} style={{height: 30,width: 30,marginRight: 10,marginLeft: 10}} resizeMode={"cover"} />
-            <Text style={styles.textStyle}> {details.college} </Text>
+            <Text style={styles.textStyle}> {college} </Text>
           </CardItem>
 
-          <CardItem>
-            <Image source={phoneIcon} style={{height: 30,width: 30,marginRight: 10,marginLeft: 10}} resizeMode={"cover"} />
-            <Text style={styles.textStyle}> {details.phone} </Text>
-          </CardItem>
+          <TouchableOpacity onPress={()=>this.openCall()}>
+            <CardItem>
+              <Image source={phoneIcon} style={{height: 30,width: 30,marginRight: 10,marginLeft: 10}} resizeMode={"cover"} />
+              <Text style={styles.textStyle}> {details.phone} </Text>
+            </CardItem>
+          </TouchableOpacity>
+          
         </Card>
         <Footer />
       </View>
