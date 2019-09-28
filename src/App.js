@@ -15,8 +15,9 @@ import React from 'react'
 //========================================================================================
 
 import { useScreens } from 'react-native-screens'
-import { createAppContainer, createSwitchNavigator } from "react-navigation"
+import { createAppContainer, createSwitchNavigator,createDraw } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
+import { createDrawerNavigator } from 'react-navigation-drawer';
 
 //########################################################################################
 
@@ -31,6 +32,9 @@ import SelectCollege from './Views/SelectCollege'
 import config from './config/general'
 import SelectPost from './Views/SelectPost'
 import Details from './Views/ShowDetails'
+import Drawer from './Views/DrawerMenu'
+import DetailsEnter from './Views/DetailsEnter'
+
 //########################################################################################
 
 useScreens()
@@ -41,7 +45,12 @@ const AppStack = createStackNavigator({
   Details
 },{
   initialRouteName:"SelectCollege",
-  
+  navigationOptions: ({ navigation }) => ({
+    drawerLockMode:
+      navigation.state.routes[navigation.state.index].routeName === 'SelectCollege'
+        ? 'none'
+        : 'locked-closed',
+  }),
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: config.primaryColor,
@@ -53,10 +62,20 @@ const AppStack = createStackNavigator({
   },
   headerLayoutPreset:"center"
 })
+
+const DrawerMenu = createDrawerNavigator({
+    AppStack,
+    DetailsEnter
+},
+{
+  contentComponent: props => <Drawer {...props} />,
+})
+
 const Switch = createSwitchNavigator({
   SplashScreen,
-  AppStack
+  DrawerMenu
 })
+
 const AppContainer = createAppContainer(Switch)
 
 
