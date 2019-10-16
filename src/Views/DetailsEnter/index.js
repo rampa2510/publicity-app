@@ -5,7 +5,7 @@
 //========================================================================================
 
 import React, { PureComponent } from 'react'
-import { View,StyleSheet,Text,TouchableOpacity,Picker,Alert,ToastAndroid } from 'react-native'
+import { View,StyleSheet,Text,TouchableOpacity,Alert,ToastAndroid } from 'react-native'
 
 //########################################################################################
 
@@ -52,7 +52,9 @@ export default class App extends PureComponent {
           this.setState({isConnected:true})
       }
     })
-    await this.fetchCollege()
+
+    let code = this.props.navigation.getParam("code",'')
+    this.setState({college:code})
   }
   componentWillUnmount() {
     this.unsubscribe()
@@ -346,25 +348,8 @@ export default class App extends PureComponent {
   //     this.setState({phone})
   // }
 
-  fetchCollege=async ()=>{
-    
-    try {
-      let data = await this.fetch.fetchCollege()
-      // this.dataArr=data
-      this.setState({collegeData:data})
-    } catch (error) {
-      this.setState({isLoading:false})
-      Alert.alert("Technical Error","A Technical error has occured please contact the technical team")
-      console.log(error)
-    }
-    
-  }
 
-  // render dropdown
 
-  renderDropdown=()=>{
-    return this.state.collegeData.map(item=><Picker.Item label={item.name.toUpperCase()} value={item.name} key={item._id.toString()} />)
-  }
 
   // this will render the inputs in the view
   renderTextInput=()=>{
@@ -429,15 +414,27 @@ export default class App extends PureComponent {
         {/* College field */}
         <View style={textInputStyle}>
         
-          <Picker
-            selectedValue={this.state.language}
-            style={{height: 60, width: "100%",marginBottom: -15}}
-            onValueChange={(itemValue) =>
-              this.setState({language: itemValue})
-            }>
-            {this.renderDropdown()}
-          </Picker>
-
+        <Hoshi
+          label={'College Code'}
+          // this is used as active border color
+          borderColor={this.state.error.includes('college') ? "#f00" : '#0099ff'}
+          // active border height
+          borderHeight={2}
+          inputPadding={16}
+          // this is used to set backgroundColor of label mask.
+          // please pass the backgroundColor of your TextInput container.
+          backgroundColor={'#F9F7F6'}
+          // TextInput props
+          // autoCompleteType="name"
+          keyboardType="default"
+          returnKeyType={'next'}
+          ref={ref=> this.nameInput = ref}  
+          onSubmitEditing={() => this.changeCompletionValue("college")} 
+          onChangeText={(college)=>this.setState({college})}
+          onEndEditing={e=>this.changeCompletionValue("college")}
+          value={this.state.college}
+        />
+          {this.state.error.includes('college')?<Text style={errorText}> Please enter College code </Text>:null}
         </View>
 
         {/* Designation field */}
@@ -523,7 +520,7 @@ export default class App extends PureComponent {
   }
 
   render() {
-    console.log(this.state)
+    // console.log(this.state)
     // if discconected to internet show nothing
     if(!this.state.isConnected){
       return (
