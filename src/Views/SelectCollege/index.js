@@ -5,7 +5,7 @@
 //========================================================================================
 
 import React, { PureComponent } from 'react'
-import { View,FlatList,StyleSheet,Alert,Text,ScrollView } from 'react-native'
+import { View,FlatList,StyleSheet,Alert,Text,ScrollView,Image,TouchableWithoutFeedback } from 'react-native'
 
 //########################################################################################
 
@@ -41,8 +41,17 @@ export default class index extends PureComponent {
     this.fetch = new Fetch()
   }
 
-  static navigationOptions = {
-    title: 'Select College'
+  static navigationOptions = ({navigation})=>{
+    return {
+      title: 'Select College',
+    headerLeft:({ focused, tintColor })=>{
+      return (
+      <TouchableWithoutFeedback onPress={()=>navigation.openDrawer()}>
+        <Image source={require('../../Assets/menu.webp') } style={{width: 30,height: 30}} />
+      </TouchableWithoutFeedback>
+      )
+    },
+    headerLeftContainerStyle:{marginLeft:"5%"}}
   }
 
   UNSAFE_componentWillMount(){

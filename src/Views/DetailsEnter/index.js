@@ -20,8 +20,6 @@ import NetInfo from "@react-native-community/netinfo";
 
 //########################################################################################
 
-// import config
-import config from '../../config/url'
 
 //========================================================================================
 /*                                                                                      *
@@ -30,7 +28,8 @@ import config from '../../config/url'
 //========================================================================================
 
 import SpinnerScreen from '../SpinnerScreen'
-
+import config from '../../config/url'
+import Fetch from '../../Services/fetchDetails'
 //########################################################################################
 
 /**
@@ -41,9 +40,10 @@ export default class App extends PureComponent {
   constructor(props){
     super(props)
     this.unsubscribe
+    this.fetch = new Fetch()
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.unsubscribe = NetInfo.addEventListener(state => {
       if(!state.isConnected)
         this.setState({isConnected:false})
@@ -52,6 +52,7 @@ export default class App extends PureComponent {
           this.setState({isConnected:true})
       }
     })
+    await this.fetchCollege()
   }
   componentWillUnmount() {
     this.unsubscribe()
@@ -69,6 +70,8 @@ export default class App extends PureComponent {
     completedFields:[],
     isConnected:true,
     isReqLoading:false,
+    isLoading:true,
+    collegeData:[]
   }
 
   // function to validate phone number
@@ -343,6 +346,26 @@ export default class App extends PureComponent {
   //     this.setState({phone})
   // }
 
+  fetchCollege=async ()=>{
+    
+    try {
+      let data = await this.fetch.fetchCollege()
+      // this.dataArr=data
+      this.setState({collegeData:data})
+    } catch (error) {
+      this.setState({isLoading:false})
+      Alert.alert("Technical Error","A Technical error has occured please contact the technical team")
+      console.log(error)
+    }
+    
+  }
+
+  // render dropdown
+
+  renderDropdown=()=>{
+    return this.state.collegeData.map(item=><Picker.Item label={item.name.toUpperCase()} value={item.name} key={item._id.toString()} />)
+  }
+
   // this will render the inputs in the view
   renderTextInput=()=>{
     // console.log(this.state)
@@ -405,33 +428,14 @@ export default class App extends PureComponent {
         
         {/* College field */}
         <View style={textInputStyle}>
-        {/* <Hoshi
-          label={'College'}
-          // this is used as active border color
-          borderColor={this.state.error.includes('college') ? "#f00" : '#0099ff'}
-          // active border height
-          borderHeight={2}
-          inputPadding={16}
-          // this is used to set backgroundColor of label mask.
-          // please pass the backgroundColor of your TextInput container.
-          backgroundColor={'#F9F7F6'}
-          returnKeyType={'next'}
-          ref={ref=> this.collegeInput = ref} 
-          onSubmitEditing={() => this.changeCompletionValue("college")}  
-          onChangeText={(college)=>this.setState({college})}
-          onEndEditing={e=>this.changeCompletionValue("college")}
-          value={this.state.college}
-
-        />
-          {this.state.error.includes('college')?<Text style={errorText}> Please enter your college name </Text>:null} */}
+        
           <Picker
             selectedValue={this.state.language}
-            style={{height: 50, width: 100}}
-            onValueChange={(itemValue, itemIndex) =>
+            style={{height: 60, width: "100%",marginBottom: -15}}
+            onValueChange={(itemValue) =>
               this.setState({language: itemValue})
             }>
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
+            {this.renderDropdown()}
           </Picker>
 
         </View>

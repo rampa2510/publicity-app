@@ -34,7 +34,7 @@ import SelectPost from './Views/SelectPost'
 import Details from './Views/ShowDetails'
 import Drawer from './Views/DrawerMenu'
 import DetailsEnter from './Views/DetailsEnter'
-
+import AddCodes from './Views/AddCodes'
 //########################################################################################
 
 useScreens()
@@ -45,12 +45,12 @@ const AppStack = createStackNavigator({
   Details
 },{
   initialRouteName:"SelectCollege",
-  navigationOptions: ({ navigation }) => ({
-    drawerLockMode:
-      navigation.state.routes[navigation.state.index].routeName === 'SelectCollege'
-        ? 'none'
-        : 'locked-closed',
-  }),
+  // navigationOptions: ({ navigation }) => ({
+  //   drawerLockMode:
+  //     navigation.state.routes[navigation.state.index].routeName === 'SelectCollege'
+  //       ? 'none'
+  //       : 'locked-closed',
+  // }),
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: config.primaryColor,
@@ -65,7 +65,8 @@ const AppStack = createStackNavigator({
 
 const DrawerMenu = createDrawerNavigator({
     AppStack,
-    DetailsEnter
+    DetailsEnter,
+    AddCodes
 },
 {
   contentComponent: props => <Drawer {...props} />,
