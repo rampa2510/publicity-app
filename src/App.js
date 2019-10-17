@@ -35,6 +35,7 @@ import Details from './Views/ShowDetails'
 import Drawer from './Views/DrawerMenu'
 import DetailsEnter from './Views/DetailsEnter'
 import AddCodes from './Views/AddCodes'
+import BrowseCodes from './Views/BrowseCodes'
 //########################################################################################
 
 useScreens()
@@ -66,7 +67,8 @@ const AppStack = createStackNavigator({
 const DrawerMenu = createDrawerNavigator({
     AppStack,
     DetailsEnter,
-    AddCodes
+    AddCodes,
+    BrowseCodes
 },
 {
   contentComponent: props => <Drawer {...props} />,

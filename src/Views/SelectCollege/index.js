@@ -97,7 +97,7 @@ export default class index extends PureComponent {
       value: text,
     });
     const data = this.dataArr.filter(item => {      
-      const itemData = item.name.toLowerCase()
+      const itemData = item.code.toLowerCase()
       
        const textData = text.toLowerCase();
         
@@ -174,7 +174,7 @@ export default class index extends PureComponent {
       {/* <ScrollView> */}
         <FlatList
         data={this.state.data}
-        renderItem={({item})=> <CollegeCard name={item.code} />}
+        renderItem={({item})=> <CollegeCard name={item.code} purpose="post" />}
         ListHeaderComponent={this.renderSearchBar()}
         keyExtractor={(item)=>item._id}
         refreshing={this.state.refreshing}

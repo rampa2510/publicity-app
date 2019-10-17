@@ -55,6 +55,7 @@ export default class App extends PureComponent {
     })
 
     let code = this.props.navigation.getParam("code",'')
+    console.log(code)
     this.setState({college:code})
   }
   componentWillUnmount() {
