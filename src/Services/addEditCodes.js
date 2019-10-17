@@ -2,7 +2,7 @@ import { apiUrl } from '../config/url'
 
 export default class Add {
   addCode=async (code,name)=>{
-    let url = `${apiUrl}/addcodes`
+    let url = `${apiUrl}/addcode`
     try {
       let body = {
         code,
@@ -17,6 +17,7 @@ export default class Add {
         }
       })
       let data = await response.json()
+      console.log(data)
       return data
     } catch (error) {
       throw new Error(error)

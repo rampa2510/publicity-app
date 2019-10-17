@@ -37,7 +37,7 @@ class index extends PureComponent {
         <Card>
           <CardItem>
             <Image source={CollIcon} style={{height: 30,width: 30,marginRight: 10,marginLeft: 10}} resizeMode={"cover"} />
-            <Text style={styles.textStyle}> {name} </Text>
+            <Text style={styles.textStyle}> {name.toUpperCase()} </Text>
           </CardItem>
         </Card>
       </TouchableOpacity>

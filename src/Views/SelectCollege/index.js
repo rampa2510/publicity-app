@@ -5,7 +5,7 @@
 //========================================================================================
 
 import React, { PureComponent } from 'react'
-import { View,FlatList,StyleSheet,Alert,Text,ScrollView,Image,TouchableWithoutFeedback } from 'react-native'
+import { View,FlatList,StyleSheet,Alert,Text,Image,TouchableWithoutFeedback } from 'react-native'
 
 //########################################################################################
 
@@ -29,7 +29,7 @@ import Fetch from '../../Services/fetchDetails'
 import SpinnerScreen from '../SpinnerScreen'
 import EmptyScreen from '../EmptyScreenView'
 import CollegeCard from '../../Components/CollegeCard'
-import Footer from '../../Components/Footer'
+// import Footer from '../../Components/Footer'
 import NetInfo from "@react-native-community/netinfo";
 //########################################################################################
 
@@ -118,7 +118,6 @@ export default class index extends PureComponent {
         isLoading:true
       })
     }
-    
     try {
       let data = await this.fetch.fetchCollege()
       this.dataArr=data
@@ -175,7 +174,7 @@ export default class index extends PureComponent {
       {/* <ScrollView> */}
         <FlatList
         data={this.state.data}
-        renderItem={({item})=> <CollegeCard name={item.name} />}
+        renderItem={({item})=> <CollegeCard name={item.code} />}
         ListHeaderComponent={this.renderSearchBar()}
         keyExtractor={(item)=>item._id}
         refreshing={this.state.refreshing}

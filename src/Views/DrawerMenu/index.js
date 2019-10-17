@@ -16,12 +16,12 @@ export default class Drawer extends PureComponent {
   render() {
     return (
       <>
-      <View style={{ flex: 1, paddingTop: 40 }}>
+      <View style={{ flex: 1 }}>
         <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('SelectCollege')}>
           <View style={styles.buttons}>
           <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/browse.webp')} />
             <Text style={styles.textStyle}>
-              Browse
+              Browse Data
             </Text>
           </View>
         </TouchableWithoutFeedback>
@@ -29,7 +29,7 @@ export default class Drawer extends PureComponent {
           <View style={styles.buttons}>
           <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/details.webp')} />
             <Text style={styles.textStyle}>
-              Details
+              Enter Details
             </Text>
           </View>
         </TouchableWithoutFeedback>
@@ -38,6 +38,14 @@ export default class Drawer extends PureComponent {
           <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/addCodes.webp')} />
             <Text style={styles.textStyle}>
               Add Codes
+            </Text>
+          </View>
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('BrowseCodes')}>
+          <View style={styles.buttons}>
+          <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/codes.webp')} />
+            <Text style={styles.textStyle}>
+              Browse Codes
             </Text>
           </View>
         </TouchableWithoutFeedback>
@@ -60,7 +68,7 @@ const styles = StyleSheet.create({
   },
   iconStyle:{
     width: 30,
-    padding: 5,
+    // padding: 5,
     marginLeft: 10
   },
   textStyle:{

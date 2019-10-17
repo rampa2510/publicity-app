@@ -2,7 +2,7 @@ import { apiUrl } from '../config/url'
 export default class Fetch{
 
   fetchCollege =async ()=>{
-      let url = `${apiUrl}/fetchcollege`
+      let url = `${apiUrl}/fetchcode`
     // console.log(page)
     try {
       

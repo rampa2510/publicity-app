@@ -76,11 +76,11 @@ export default class index extends PureComponent {
         let data =await this.add.addCode(codeValue,nameValue)
         if(data[0]==409){
           Alert.alert("Code Already exist","The code already exist please try nother one")
-          this.setState({isLoading:false})
+          this.setState({isLoading:false,codeValue:'',nameValue:''})
           return
         }
         ToastAndroid.show("Code Added !",ToastAndroid.SHORT)
-        this.setState({isLoading:false})
+        this.setState({isLoading:false,codeValue:'',nameValue:''})
       } catch (error) {
         this.setState({isLoading:false})
         Alert.alert("Technical Error","A Technical error has occured please contact the technical team")

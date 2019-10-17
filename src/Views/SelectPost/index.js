@@ -109,7 +109,8 @@ export default class index extends PureComponent {
     try {
       let data = await this.fetch.fetchPosts(this.collegeName)
       this.dataArr=data
-      this.setState({isLoading:false,refreshing:false,data}) 
+      this.setState({isLoading:false,refreshing:false,data})
+      // console.log(data) 
     } catch (error) {
       console.log(error)
       this.setState({isLoading:false,refreshing:false})

@@ -30,6 +30,7 @@ import NetInfo from "@react-native-community/netinfo";
 import SpinnerScreen from '../SpinnerScreen'
 import config from '../../config/url'
 import Fetch from '../../Services/fetchDetails'
+import Header from '../../Components/Header'
 //########################################################################################
 
 /**
@@ -540,11 +541,12 @@ export default class App extends PureComponent {
     const { mainContainer, header, headerMaintext, buttonStyle, textStyle, footer, footerText  } = styles
     return (
       <>
-      <View style={header}>
+      {/* <View style={header}>
       
       <Text style={headerMaintext}> Enter Details </Text>
 
-      </View>
+      </View> */}
+      <Header title="Enter Details" />
 
       <View style={mainContainer}>
 
