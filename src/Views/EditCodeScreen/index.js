@@ -28,7 +28,7 @@ import NetInfo from "@react-native-community/netinfo";
 
 import SpinnerScreen from '../SpinnerScreen'
 import config from '../../config/general'
-import Add from '../../Services/addEditCodes'
+import Edit from '../../Services/addEditCodes'
 import Footer from '../../Components/Footer'
 import Header from '../../Components/Header'
 //########################################################################################
@@ -37,7 +37,7 @@ export default class index extends PureComponent {
 
   constructor(props){
     super(props)
-    this.add = new Add()
+    this.edit = new Edit()
     this.unsubscribe
   }
   
@@ -55,39 +55,44 @@ export default class index extends PureComponent {
           this.setState({isConnected:true})
       }
     })
+    this.focusListner = this.props.navigation.addListener("willFocus",()=>{
+      let code = this.props.navigation.getParam("code","")
+      this.setState({prevValue:code})
+    })
+    
   }
   componentWillUnmount() {
     this.unsubscribe()
+    this.focusListner.remove()
   }
 
   state={
     codeValue:'',
     nameValue:'',
     isConnected:false,
-    isLoading:false
+    isLoading:false,
+    prevValue:""
   }
 
   handleSubmitBtnClick=async ()=>{
     const { codeValue,nameValue } = this.state
-    let condition = nameValue.trim().length && codeValue.trim().length
+    let condition = nameValue.trim().length && codeValue.trim().length 
     if(condition){
       this.setState({isLoading:true})
       try {
-        let data =await this.add.addCode(codeValue,nameValue)
-        if(data[0]==409){
-          Alert.alert("Code Already exist","The code already exist please try nother one")
-          this.setState({isLoading:false,codeValue:'',nameValue:''})
-          return
-        }
-        ToastAndroid.show("Code Added !",ToastAndroid.SHORT)
+        let data =await this.edit.editCode(this.state)
+        ToastAndroid.show("Code Edited !",ToastAndroid.SHORT)
         this.setState({isLoading:false,codeValue:'',nameValue:''})
+        this.props.navigation.navigate('EditCode')
       } catch (error) {
         this.setState({isLoading:false})
         Alert.alert("Technical Error","A Technical error has occured please contact the technical team")
         console.log(error)         
       }
     }else
-    ToastAndroid.show('Incomplete details', ToastAndroid.SHORT);
+      ToastAndroid.show('Incomplete details', ToastAndroid.SHORT);
+
+    // console.log(this.state)
   }
 
   render(){
@@ -101,15 +106,15 @@ export default class index extends PureComponent {
     }
 
     if(this.state.isLoading)
-      return <SpinnerScreen message="Adding code ..." />
+      return <SpinnerScreen message="Editing code ..." />
 
       const { mainContainer,textInputView,buttonStyle,textStyle } = styles
     return(
       <View style={mainContainer}>
-        <Header title="Add Codes" />
+        <Header title="Edit Codes" purpose="edit" />
         <View style={textInputView}>
           <Hoshi
-            label={'Code'}
+            label={'New code'}
             // this is used as active border color
             borderColor={ config.primaryColor }
             // active border height

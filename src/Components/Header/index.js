@@ -47,10 +47,37 @@ const styles=StyleSheet.create({
     fontWeight: "bold",
     fontFamily: config.fontFamily,
     marginLeft: 45
- }
+ },
+ centerStyle:{
+  backgroundColor: config.primaryColor,
+  flexDirection:"row",
+  height: 55,
+  justifyContent: 'center',
+  alignItems: 'center',
+  shadowOpacity: 30,
+  shadowOffset: {
+    height: 30
+    }
+  }
 })
 class index extends PureComponent {
   render() {
+
+    if(this.props.purpose==='edit'){
+      return (
+        <>
+            <View style={styles.viewStyles}>
+              <TouchableWithoutFeedback onPress={()=>this.props.navigation.openDrawer()}>
+                <Image style={{width:30,flex: 1,height: 30,padding: 0,marginLeft:-40}} resizeMode={"contain"} source={require('../../Assets/menu.webp')} />
+              </TouchableWithoutFeedback>
+            <Text style={styles.headerStyles}> {this.props.title} </Text>
+            {/* <Image style={{width:30}} resizeMode={"contain"} source={require('../../Assets/plusIcon.webp')} /> */}
+            <View style={{flex: 1}}></View>
+          </View>
+        </>
+      )
+    }
+
     return (
       <>
           <View style={styles.viewStyles}>

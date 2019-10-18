@@ -49,6 +49,14 @@ export default class Drawer extends PureComponent {
             </Text>
           </View>
         </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('EditCode')}>
+          <View style={styles.buttons}>
+          <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/editCodes.webp')} />
+            <Text style={styles.textStyle}>
+              Edit Code
+            </Text>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
       </>
     )
