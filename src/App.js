@@ -79,7 +79,7 @@ const Switch = createSwitchNavigator({
   DrawerMenu
 })
 
-const AppContainer = createAppContainer(Switch)
+const AppContainer = createAppContainer(DrawerMenu)
 
 
 export default class App extends React.Component {

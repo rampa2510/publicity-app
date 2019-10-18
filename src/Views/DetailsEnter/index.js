@@ -53,14 +53,27 @@ export default class App extends PureComponent {
           this.setState({isConnected:true})
       }
     })
+    
+    // const { navigation } = this.props;
 
-    let code = this.props.navigation.getParam("code",'')
-    console.log(code)
-    this.setState({college:code})
+    // this.focusListener = navigation.addListener("didFocus", () => {
+    //   let code = this.props.navigation.getParam("code",'')
+    //   //console.log(code)
+    //   this.setState({college:code},()=>console.log(this.state))
+    //   this.changeCompletionValue("college")
+    // });
+    // this.blurListener = navigation.addListener("didBlur", () => {
+    //   // let code = this.props.navigation.getParam("code",'')
+    //   // console.log(code)
+    //   this.setState({college:''})
+    // });
   }
+
   componentWillUnmount() {
     this.unsubscribe()
- }
+    this.focusListener.remove()
+    this.blurListener.remove()
+  }
 
 
 
@@ -430,7 +443,7 @@ export default class App extends PureComponent {
           // autoCompleteType="name"
           keyboardType="default"
           returnKeyType={'next'}
-          ref={ref=> this.nameInput = ref}  
+          ref={ref=> this.collegeInput = ref}  
           onSubmitEditing={() => this.changeCompletionValue("college")} 
           onChangeText={(college)=>this.setState({college})}
           onEndEditing={e=>this.changeCompletionValue("college")}
@@ -474,39 +487,52 @@ export default class App extends PureComponent {
     let condition = (phone.trim().length===10 || phone.trim().length===11) && name.trim().length && post.trim().length
     if(condition){
     this.setState({isReqLoading:true})
-      let data = {
-        phone,
-        name,
-        college,
-        post
-      }
+      
       try {
+        let data = {
+          phone,
+          name,
+          college,
+          post
+        }
+        // console.log(data)
         let body = JSON.stringify(data)
-        let response = await fetch(config.API + '/add',{
+        let response = await fetch(config.apiUrl + '/add',{
           method:"POST",
           body,
           headers:{
             'Content-Type': 'application/json'
           }
         })
-        this.setState({
-          phone:'',
-          name:'',
-          college:'',
-          post:'',
-          completion:0,
-          error:[],
-          completedFields:[],
-          isReqLoading:false,
-        },()=>{
-          ToastAndroid.show('Details uploaded', ToastAndroid.SHORT);
-        })
+        let resp = await response.json()
+        // console.log(resp)
+        if(resp[0]===409){
+          ToastAndroid.show('College not present in database.', ToastAndroid.SHORT);
+          this.setState({
+            isReqLoading:false,
+            completion:3,
+            error:['college']
+          })
+        }else{
+          this.setState({
+            phone:'',
+            name:'',
+            college:'',
+            post:'',
+            completion:0,
+            error:[],
+            completedFields:[],
+            isReqLoading:false,
+          },()=>{
+            ToastAndroid.show('Details uploaded', ToastAndroid.SHORT);
+          })
+        }
       } catch (error) {
         this.setState({isReqLoading:false})
         Alert.alert("Technical Error","Unable to add details please contact the technical team")
         console.log(error)
       }
-     
+    
     }else{
       Alert.alert("Incomplete details","Please fill the complete form before trying to submit")
     }

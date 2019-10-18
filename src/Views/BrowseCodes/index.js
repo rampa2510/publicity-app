@@ -5,7 +5,7 @@
 //========================================================================================
 
 import React, { PureComponent } from 'react'
-import { View,FlatList,StyleSheet,Alert,Text,ScrollView,Image,TouchableWithoutFeedback } from 'react-native'
+import { View,FlatList,StyleSheet,Alert,Text } from 'react-native'
 
 //########################################################################################
 
