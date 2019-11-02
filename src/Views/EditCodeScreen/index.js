@@ -44,6 +44,9 @@ export default class index extends PureComponent {
   // static navigationOptions = {
   //   title: 'Add code'
   // }
+  static navigationOptions = {
+    title: 'Enter new details'
+  }
 
 
   async componentDidMount() {

@@ -15,7 +15,7 @@ import React from 'react'
 //========================================================================================
 
 import { useScreens } from 'react-native-screens'
-import { createAppContainer, createSwitchNavigator,createDraw } from "react-navigation"
+import { createAppContainer, createSwitchNavigator } from "react-navigation"
 import { createStackNavigator } from 'react-navigation-stack'
 import { createDrawerNavigator } from 'react-navigation-drawer';
 
@@ -38,6 +38,7 @@ import AddCodes from './Views/AddCodes'
 import BrowseCodes from './Views/BrowseCodes'
 import EditCode from './Views/EditCodeList'
 import EditCodeScreen from './Views/EditCodeScreen'
+import LoginScreen from './Views/Login'
 //########################################################################################
 
 useScreens()
@@ -66,13 +67,40 @@ const AppStack = createStackNavigator({
   headerLayoutPreset:"center"
 })
 
+const editCode = createStackNavigator({
+    EditCode,
+    EditCodeScreen
+},{
+  initialRouteName:"EditCode",
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: config.primaryColor,
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+    fontWeight: 'bold',
+    },
+  },
+  headerLayoutPreset:"center"
+})
+
+const AuthStack = createStackNavigator(
+  {
+    Login: {
+      screen:LoginScreen,
+      navigationOptions: {
+        header: null //this will hide the header
+      }
+    }
+  }
+)
+
 const DrawerMenu = createDrawerNavigator({
     AppStack,
     DetailsEnter,
     AddCodes,
     BrowseCodes,
-    EditCode,
-    EditCodeScreen
+    editCode
 },
 {
   contentComponent: props => <Drawer {...props} />,
@@ -80,10 +108,11 @@ const DrawerMenu = createDrawerNavigator({
 
 const Switch = createSwitchNavigator({
   SplashScreen,
-  DrawerMenu
+  DrawerMenu,
+  AuthStack
 })
 
-const AppContainer = createAppContainer(DrawerMenu)
+const AppContainer = createAppContainer(Switch)
 
 
 export default class App extends React.Component {

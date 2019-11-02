@@ -35,6 +35,20 @@ import Header from '../../Components/Header'
 //########################################################################################
 
 export default class index extends PureComponent{
+
+  static navigationOptions = ({navigation})=>{
+    return {
+      title: 'Edit code',
+    headerLeft:({ focused, tintColor })=>{
+      return (
+      <TouchableWithoutFeedback onPress={()=>navigation.openDrawer()}>
+        <Image source={require('../../Assets/menu.webp') } style={{width: 30,height: 30}} />
+      </TouchableWithoutFeedback>
+      )
+    },
+    headerLeftContainerStyle:{marginLeft:"5%"}}
+  }
+
   constructor(props){
     super(props)
     this.fetch = new Fetch()
@@ -107,6 +121,12 @@ export default class index extends PureComponent{
     }
     try {
       let data = await this.fetch.fetchCollege()
+      
+      if(data[0]===400){
+        Alert.alert("Code Does not exist","The code you requested to change is not found  in the database.")
+        return
+      }
+
       this.dataArr=data
       this.setState({isLoading:false,refreshing:false,data}) 
     } catch (error) {
