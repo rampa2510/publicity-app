@@ -45,7 +45,7 @@ The main idea of this product is as follows -
 - Before the college use to store the data in the excel sheets and use them, this would create a lot of chaos plus data was not centralised
 - Using this app now the data is being centralised plus it's a lot convienent for the users to carry and edit
 - This app consists of 2 users one admin right that can add colleg codes analyse activivty etc.
-
+- The backend for this app is in other repo
 
 ### Built With
 
