@@ -74,8 +74,6 @@ export default class App extends PureComponent {
 
   componentWillUnmount() {
     this.unsubscribe()
-    this.focusListener.remove()
-    this.blurListener.remove()
   }
 
 

@@ -5,7 +5,7 @@
 //========================================================================================
 
 import React, { PureComponent } from 'react'
-import { View,FlatList,StyleSheet,Alert,Text } from 'react-native'
+import { View,FlatList,StyleSheet,Alert,Text,TouchableWithoutFeedback,Image } from 'react-native'
 
 //########################################################################################
 
@@ -178,7 +178,7 @@ export default class index extends PureComponent{
 
     return(
       <>
-      <Header title="Edit codes" />
+      {/* <Header title="Edit codes" /> */}
       <View style={styles.mainContainer}>
 
       {/* <ScrollView> */}

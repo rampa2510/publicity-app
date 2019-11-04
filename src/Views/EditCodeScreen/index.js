@@ -114,7 +114,7 @@ export default class index extends PureComponent {
       const { mainContainer,textInputView,buttonStyle,textStyle } = styles
     return(
       <View style={mainContainer}>
-        <Header title="Edit Codes" purpose="edit" />
+        {/* <Header title="Edit Codes" purpose="edit" /> */}
         <View style={textInputView}>
           <Hoshi
             label={'New code'}

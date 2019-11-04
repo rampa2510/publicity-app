@@ -68,8 +68,8 @@ export default class index extends PureComponent {
     try {
       let data = await this.auth.login(this.state.username.trim(),this.state.password.trim())
       if(data[0]===200){
-        this.setState({isLoginReqLoading:false})
         await this.auth.storeUserData(data[2])
+        this.setState({isLoginReqLoading:false})
         this.props.navigation.navigate('SelectCollege')
       }else{
         this.setState({isLoginReqLoading:false,error:true})
