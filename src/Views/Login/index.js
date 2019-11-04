@@ -127,6 +127,7 @@ export default class index extends PureComponent {
                 // please pass the backgroundColor of your TextInput container.
                 backgroundColor={"#fff"}
                 value={this.state.password}
+                secureTextEntry={true}
                 onChangeText={(password)=>this.setState({password})}
               />
               {this.state.error?<Text style={styles.errorText}> Invalid credentials </Text>:null}
