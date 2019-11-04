@@ -81,7 +81,7 @@ export default class index extends PureComponent {
           </TouchableOpacity>
           
         </Card>
-        <Footer />
+        {/* <Footer /> */}
       </View>
     )
   }
@@ -90,7 +90,6 @@ export default class index extends PureComponent {
 const styles = StyleSheet.create({
   mainContainer:{
     backgroundColor: config.backgroundColor,
-    height: "100%"
   },
   textStyle:{
     fontFamily: config.fontFamily,
