@@ -80,14 +80,6 @@ export default class Drawer extends PureComponent {
           </Text>
         </View>
       </TouchableWithoutFeedback>
-      <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('BrowseCodes')}>
-        <View style={styles.buttons}>
-        <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/codes.webp')} />
-          <Text style={styles.textStyle}>
-            Browse Colleges
-          </Text>
-        </View>
-      </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('EditCode')}>
         <View style={styles.buttons}>
         <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/editCodes.webp')} />
@@ -106,6 +98,14 @@ export default class Drawer extends PureComponent {
       </TouchableWithoutFeedback>
       </>
       :null}
+      <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('BrowseCodes')}>
+        <View style={styles.buttons}>
+        <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/codes.webp')} />
+          <Text style={styles.textStyle}>
+            Browse Colleges
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={this.logOutUser}>
         <View style={styles.buttons}>
         <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/logout.webp')} />
