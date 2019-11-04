@@ -7,10 +7,47 @@ import React, { PureComponent } from 'react'
 import { View,TouchableWithoutFeedback,StyleSheet,Text,Image } from 'react-native'
 //########################################################################################
 
+//========================================================================================
+/*                                                                                      *
+ *                               import user defined files                              *
+ *                                                                                      */
+//========================================================================================
+import Auth from '../../Services/Auth'
+//########################################################################################
+
 export default class Drawer extends PureComponent {
 
   constructor(props){
     super(props)
+    this.auth = new Auth()
+  }
+
+  state={
+    user:''
+  }
+
+  async componentDidMount(){
+    this.determinType()
+
+  }
+
+  determinType=async ()=>{
+    let data =await this.auth.getUserData()
+    this.setState({user:data.type})
+  }
+
+  logOutUser=async ()=>{
+    try {
+      let deleteData =await this.auth.removeData()
+      // console.log(deleteData)
+      if(deleteData){
+        this.props.navigation.navigate("Login")
+      }else{
+        this.props.navigation.navigate("Login")
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
   
   render() {
@@ -33,31 +70,51 @@ export default class Drawer extends PureComponent {
             </Text>
           </View>
         </TouchableWithoutFeedback>
+        {this.state.user==="admin"?
+        <>
         <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('AddCodes')} >
-          <View style={styles.buttons}>
-          <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/addCodes.webp')} />
-            <Text style={styles.textStyle}>
-              Add Codes
-            </Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('BrowseCodes')}>
-          <View style={styles.buttons}>
-          <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/codes.webp')} />
-            <Text style={styles.textStyle}>
-              Browse Codes
-            </Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('EditCode')}>
-          <View style={styles.buttons}>
-          <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/editCodes.webp')} />
-            <Text style={styles.textStyle}>
-              Edit Code
-            </Text>
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
+        <View style={styles.buttons}>
+        <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/addCodes.webp')} />
+          <Text style={styles.textStyle}>
+            Add Colleges
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('BrowseCodes')}>
+        <View style={styles.buttons}>
+        <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/codes.webp')} />
+          <Text style={styles.textStyle}>
+            Browse Colleges
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('EditCode')}>
+        <View style={styles.buttons}>
+        <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/editCodes.webp')} />
+          <Text style={styles.textStyle}>
+            Edit Colleges
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate('AnaltyicsScreen')}>
+        <View style={styles.buttons}>
+        <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/analytics.webp')} />
+          <Text style={styles.textStyle}>
+            Analytics
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+      </>
+      :null}
+      <TouchableWithoutFeedback onPress={this.logOutUser}>
+        <View style={styles.buttons}>
+        <Image style={styles.iconStyle} resizeMode={"contain"} source={require('../../Assets/logout.webp')} />
+          <Text style={styles.textStyle}>
+            Logout
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
+        </View>
       </>
     )
   }

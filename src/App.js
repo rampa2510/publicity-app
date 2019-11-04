@@ -39,6 +39,8 @@ import BrowseCodes from './Views/BrowseCodes'
 import EditCode from './Views/EditCodeList'
 import EditCodeScreen from './Views/EditCodeScreen'
 import LoginScreen from './Views/Login'
+import AnaltyicsScreen from './Views/AnalyticsScreen'
+import AddedScreen from './Views/AddedScreen'
 //########################################################################################
 
 useScreens()
@@ -49,12 +51,12 @@ const AppStack = createStackNavigator({
   Details
 },{
   initialRouteName:"SelectCollege",
-  // navigationOptions: ({ navigation }) => ({
-  //   drawerLockMode:
-  //     navigation.state.routes[navigation.state.index].routeName === 'SelectCollege'
-  //       ? 'none'
-  //       : 'locked-closed',
-  // }),
+  navigationOptions: ({ navigation }) => ({
+    drawerLockMode:
+      navigation.state.routes[navigation.state.index].routeName === 'SelectCollege'
+        ? 'none'
+        : 'locked-closed',
+  }),
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: config.primaryColor,
@@ -84,6 +86,29 @@ const editCode = createStackNavigator({
   headerLayoutPreset:"center"
 })
 
+const analysisScreen = createStackNavigator({
+  AnaltyicsScreen,
+  AddedScreen
+},{
+initialRouteName:"AnaltyicsScreen",
+navigationOptions: ({ navigation }) => ({
+  drawerLockMode:
+    navigation.state.routes[navigation.state.index].routeName === 'AnaltyicsScreen'
+      ? 'none'
+      : 'locked-closed',
+}),
+defaultNavigationOptions: {
+  headerStyle: {
+    backgroundColor: config.primaryColor,
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+  fontWeight: 'bold',
+  },
+},
+  headerLayoutPreset:"center"
+})
+
 const AuthStack = createStackNavigator(
   {
     Login: {
@@ -100,7 +125,8 @@ const DrawerMenu = createDrawerNavigator({
     DetailsEnter,
     AddCodes,
     BrowseCodes,
-    editCode
+    editCode,
+    analysisScreen
 },
 {
   contentComponent: props => <Drawer {...props} />,

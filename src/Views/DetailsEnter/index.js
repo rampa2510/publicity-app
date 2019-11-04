@@ -31,6 +31,7 @@ import SpinnerScreen from '../SpinnerScreen'
 import config from '../../config/url'
 import Fetch from '../../Services/fetchDetails'
 import Header from '../../Components/Header'
+import Auth from '../../Services/Auth'
 //########################################################################################
 
 /**
@@ -42,6 +43,8 @@ export default class App extends PureComponent {
     super(props)
     this.unsubscribe
     this.fetch = new Fetch()
+    this.auth = new Auth()
+    this.setUsername()
   }
 
   async componentDidMount() {
@@ -88,7 +91,13 @@ export default class App extends PureComponent {
     isConnected:true,
     isReqLoading:false,
     isLoading:true,
-    collegeData:[]
+    collegeData:[],
+    username:''
+  }
+
+  setUsername=async ()=>{
+    let data = await this.auth.getUserData()
+    this.setState({username:data.username})
   }
 
   // function to validate phone number
@@ -483,7 +492,7 @@ export default class App extends PureComponent {
 
 
   handleSubmitBtnClick=async ()=>{
-    const { phone,name,college,post } = this.state
+    const { phone,name,college,post,username } = this.state
     let condition = (phone.trim().length===10 || phone.trim().length===11) && name.trim().length && post.trim().length
     if(condition){
     this.setState({isReqLoading:true})
@@ -493,7 +502,8 @@ export default class App extends PureComponent {
           phone,
           name,
           college,
-          post
+          post,
+          addedBy:username
         }
         // console.log(data)
         let body = JSON.stringify(data)

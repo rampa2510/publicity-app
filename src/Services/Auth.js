@@ -13,12 +13,13 @@ import { apiUrl } from '../config/url'
 
 export default class Auth {
   storeUserData = async (data) => {
-    // console.log(data)
     try {
       await AsyncStorage.setItem('userData', JSON.stringify(data))
-      // console.log('l')
+      // let u = await this.getUserData()
+      // console.log(u)
       return true
     } catch (e) {
+      console.log(e)
       // saving error
       throw new Error(e)
     }
@@ -27,6 +28,7 @@ export default class Auth {
   getUserData=async ()=>{
     try {
       const value = await AsyncStorage.getItem("userData")
+      // console.log(value)
     if(value !== null) 
       return JSON.parse(value)
     else
@@ -35,6 +37,17 @@ export default class Auth {
     } catch (error) {
       throw new Error(error)
     }
+  }
+
+  removeData= async () => {
+    try {
+      await AsyncStorage.removeItem('userData')
+      return true
+    } catch(e) {
+      // remove error
+      throw new Error(e)
+    }
+  
   }
 
   createUser=async (username,password,type="user")=>{
@@ -55,7 +68,7 @@ export default class Auth {
           'Content-Type' : 'application/json'
         }
       })
-      
+
       let data = await response.json()
       console.log(data)
       return data

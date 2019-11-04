@@ -9,15 +9,25 @@ import { Image,View } from 'react-native'
 
 //########################################################################################
 
+//========================================================================================
+/*                                                                                      *
+ *                               import user defined files                              *
+ *                                                                                      */
+//========================================================================================
+import Auth from '../../Services/Auth'
+//########################################################################################
+
 export default class Splash extends PureComponent {
   constructor(props){
     super(props)
-
-    setTimeout(()=>this.props.navigation.navigate('Login'),3000)    
+    this.auth = new Auth()
+    setTimeout(this.authUser,3000)    
   }
 
-  auth=async ()=>{
-
+  authUser=async ()=>{
+    let data = await this.auth.getUserData()
+    console.log(data)
+    this.props.navigation.navigate(data ? "SelectCollege" : "Login")
   }
   
 
