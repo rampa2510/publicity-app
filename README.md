@@ -47,8 +47,6 @@ The main idea of this product is as follows -
 - This app consists of 2 users one admin right that can add colleg codes analyse activivty etc.
 
 
-> Note the data in the app is hard code and you can find the products data in the data directory so I have coded in a way which can be easily replacable with an api call
-
 ### Built With
 
 * [react-native](https://facebook.github.io/react-native/)
