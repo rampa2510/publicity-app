@@ -98,51 +98,51 @@ The main idea of this product is as follows -
    
 ![home](Images/selectCollege.jpeg)
 
-2) Select posts from the college of the user
+1) Select posts of the person of which you want to view the details
 
 ![post](Images/selectPost.jpeg) 
    
-3) Details will be shown. Here when you click on the phone number part you will be redirected to the phone call add you use to call without any hassle
+3) Details will be shown. Here when you click on the phone number cell you will be redirected to the phone call app, you use to call without any hassle
   
 ![Details](Images/singleDetails.jpeg)
  
 
    - Enter details screen. Here we can add the details that need to be stored. Here validation includes in the college part. There is a feature described below where the college they enter need to be present beforehand that should be added by the admin. 
   
-![profile](Images/editCodeScreen.jpeg)
+![profile](Images/enterNewDetails.jpeg)
 
    - Add college code here this screen is visible to admins only. They can add the college code with the name
 
 ![addCode](Images/addNewCodes.jpeg)
 
-   - Browse code. Here using this users can browse the code and when they click on them they will be redirected to the enter new details screen
+   - Browse code. Here using this users can browse the code and when they click on them they will be redirected to the enter new details screen. Therefore they don't need to remember all codes. 
 
 ![BrowseCode](Images/browseCodes.jpeg)
 
   - Edit code. Here the admn can edit the code in 2 steps 
 
 1) Select code to edit and when the admin click them they will be directed to tyhe new screen and prompted to edt code
-2) 
+ 
 ![EditCodeList](Images/editCOdeList.jpeg)
 
-2) Here enter new details
+2) Here enter new code
 
 ![editCodeScreen](Images/editCodeScreen.jpeg)
 
-  - Analytics. Here the admin can analyse how much data has other users have added and review them when he clicks on a user he will directed further
+  - Analytics. Here the admin can analyse how much data has other users have added and review them when he clicks on a user he will directed further to the next screen.
 
 ![Analysis](Images/addedScreen.jpeg)
 
-  - Here in this screen the admin can review the data entered by a user
+  - Here in this screen the admin can review all the data entered by a user 
 
 ![Details](Images/addedDetailsScreen.jpeg)
 
-  - This is the drawer that the admin will see
+  - This is the drawer menu that the admin will see
   - 
 ![AdminDrawer](Images/admin-drawer.jpeg)
 
 
-  - This is the drawer that the users will see
+  - This is the drawer menu that the users will see
   
 ![usersDrawer](Images/drawer-user.jpeg)
 
