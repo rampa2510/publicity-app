@@ -41,10 +41,10 @@
 ## About The Project
 
 The main idea of this product is as follows - 
-- College has to store and use the details of the various secratries of different colleges. 
+- College has to store and use details of the various secratries of different colleges. 
 - Before the college use to store the data in the excel sheets and use them, this would create a lot of chaos plus data was not centralised
 - Using this app now the data is being centralised plus it's a lot convienent for the users to carry and edit
-- This app consists of 2 users one admin right that can add colleg codes analyse activivty etc.
+- This app consists of 2 users one admin that can add college codes analyse activivty etc. Second users that can only add and edit details entered by them
 - The backend for this app is in other [repo](https://github.com/rampa2510/pub-backend)
 
 ### Built With
