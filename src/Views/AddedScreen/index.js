@@ -61,18 +61,18 @@ export default class index extends PureComponent {
     }
     try {
       let data = await this.analysis.getDetailsAddedByUser(this.username)
-      console.log(data)
+      // console.log(data)
       this.setState({isLoading:false,refreshing:false,data}) 
     } catch (error) {
       this.setState({isLoading:false,refreshing:false})
       Alert.alert("Technical Error","A Technical error has occured please contact the technical team")
-      console.log(error)
+      // console.log(error)
     }
   }
 
   UNSAFE_componentWillMount(){
     this.username = this.props.navigation.getParam("username",null)
-    console.log(this.username)
+    // console.log(this.username)
     this.fetchData()
   }
 

@@ -46,7 +46,7 @@ export default class Drawer extends PureComponent {
         this.props.navigation.navigate("Login")
       }
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   }
   

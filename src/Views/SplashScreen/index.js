@@ -27,7 +27,7 @@ export default class Splash extends PureComponent {
 
   authUser=async ()=>{
     let data = await this.auth.getUserData()
-    console.log(data)
+    // console.log(data)
     this.props.navigation.navigate(data ? "SelectCollege" : "Login")
   }
   

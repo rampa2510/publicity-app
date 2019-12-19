@@ -532,7 +532,7 @@ export default class App extends PureComponent {
       } catch (error) {
         this.setState({isReqLoading:false})
         Alert.alert("Technical Error","Unable to add details please contact the technical team")
-        console.log(error)
+        // console.log(error)
       }
     
     }else{

@@ -122,7 +122,7 @@ export default class index extends PureComponent{
     } catch (error) {
       this.setState({isLoading:false,refreshing:false})
       Alert.alert("Technical Error","A Technical error has occured please contact the technical team")
-      console.log(error)
+      // console.log(error)
     }
   
   }

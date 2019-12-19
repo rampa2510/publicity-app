@@ -97,7 +97,7 @@ export default class index extends PureComponent {
       value: text,
     });
     const data = this.dataArr.filter(item => {      
-      const itemData = item.code.toLowerCase()
+      const itemData = item.name.toLowerCase()
       
        const textData = text.toLowerCase();
         
@@ -121,11 +121,12 @@ export default class index extends PureComponent {
     try {
       let data = await this.fetch.fetchCollegeWdata()
       this.dataArr=data
+      // console.log(data)
       this.setState({isLoading:false,refreshing:false,data}) 
     } catch (error) {
       this.setState({isLoading:false,refreshing:false})
       Alert.alert("Technical Error","A Technical error has occured please contact the technical team")
-      console.log(error)
+      // console.log(error)
     }
   }
 
@@ -170,11 +171,11 @@ export default class index extends PureComponent {
 
     return(
       <View style={styles.mainContainer}>
-
+        
       {/* <ScrollView> */}
         <FlatList
         data={this.state.data}
-        renderItem={({item})=> <CollegeCard name={item.code} purpose="post" />}
+        renderItem={({item})=> <CollegeCard name={item.name} code={item.code} purpose="post" />}
         ListHeaderComponent={this.renderSearchBar()}
         keyExtractor={(item)=>item._id}
         refreshing={this.state.refreshing}

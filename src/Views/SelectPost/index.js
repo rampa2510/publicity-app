@@ -112,7 +112,7 @@ export default class index extends PureComponent {
       this.setState({isLoading:false,refreshing:false,data})
       // console.log(data) 
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       this.setState({isLoading:false,refreshing:false})
       Alert.alert("Technical Error","A Technical error has occured please contact the technical team")
     }

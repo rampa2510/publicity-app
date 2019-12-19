@@ -19,7 +19,7 @@ export default class Auth {
       // console.log(u)
       return true
     } catch (e) {
-      console.log(e)
+      // console.log(e)
       // saving error
       throw new Error(e)
     }
@@ -70,7 +70,7 @@ export default class Auth {
       })
 
       let data = await response.json()
-      console.log(data)
+      // console.log(data)
       return data
     } catch (error) {
       throw new Error(error)
@@ -94,7 +94,7 @@ export default class Auth {
         }
       })
       let data = await response.json()
-      console.log(data)
+      // console.log(data)
       return data
     } catch (error) {
       throw new Error(error)

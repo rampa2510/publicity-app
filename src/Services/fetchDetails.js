@@ -29,7 +29,7 @@ export default class Fetch{
     let data = await response.json()
     return data
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     throw new Error(error)
   }
   
@@ -54,7 +54,7 @@ export default class Fetch{
       // console.log(data);
       return data
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       throw new Error(error)
     }
     
