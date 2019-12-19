@@ -28,10 +28,10 @@ class index extends PureComponent {
     // console.log(this.props)
     let name = this.props.name
     let purpose = this.props.purpose
-    if(name.length>22){
-      name = name.slice(0,22)
-      name+=" ..."
-    }
+    // if(name.length>22){
+    //   name = name.slice(0,22)
+    //   name+=" ..."
+    // }
     if(purpose==="post"){
         return (
         <TouchableOpacity onPress={()=>this.props.navigation.navigate("SelectPost",{name:this.props.name})}>
@@ -49,7 +49,7 @@ class index extends PureComponent {
       <TouchableOpacity onPress={()=>this.props.navigation.navigate("DetailsEnter",{code:this.props.code})}>
         <Card>
           <CardItem>
-            <Image source={CollIcon} style={{height: 30,width: 30,marginRight: 10,marginLeft: 10}} resizeMode={"cover"} />
+            {/* <Image source={CollIcon} style={{height: 30,width: 30,marginRight: 10,marginLeft: 10}} resizeMode={"cover"} /> */}
             <Text style={styles.textStyle}> {this.props.code} - {name} </Text>
           </CardItem>
         </Card>

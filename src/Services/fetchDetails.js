@@ -18,6 +18,23 @@ export default class Fetch{
     
   }
 
+  fetchCollegeWdata =async ()=>{
+    let url = `${apiUrl}/codewdata`
+  // console.log(page)
+  try {
+    
+    let response = await fetch(url,{
+      method:"GET"
+    })
+    let data = await response.json()
+    return data
+  } catch (error) {
+    console.log(error)
+    throw new Error(error)
+  }
+  
+}
+
   fetchPosts=async (collegeName)=>{
     let url = `${apiUrl}/fetchpost`
     try {

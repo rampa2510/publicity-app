@@ -15,6 +15,7 @@ import { Image,View } from 'react-native'
  *                                                                                      */
 //========================================================================================
 import Auth from '../../Services/Auth'
+import SpinnerScreen from '../SpinnerScreen'
 //########################################################################################
 
 export default class Splash extends PureComponent {
@@ -34,7 +35,7 @@ export default class Splash extends PureComponent {
   render() {
     return (
       <View style={{height: "100%",width: "100%"}}>
-        <Image source={require('../../Assets/splashScreen.jpg')} style={{height: "100%",width: "100%"}} />
+        <SpinnerScreen message={"Loading .."} />
       </View>
     )
   }

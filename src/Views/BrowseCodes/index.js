@@ -85,7 +85,7 @@ export default class index extends PureComponent{
       value: text,
     });
     const data = this.dataArr.filter(item => {      
-      const itemData = item.code.toLowerCase()
+      const itemData = item.name.toLowerCase()
       
        const textData = text.toLowerCase();
         
@@ -183,7 +183,8 @@ export default class index extends PureComponent{
 const styles = StyleSheet.create({
   mainContainer:{
     backgroundColor: config.backgroundColor,
-    height: "100%"
+    height: "100%",
+    marginBottom:"10%"
   },
   searchBarContainer:{
     width: "90%",

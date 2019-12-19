@@ -119,7 +119,7 @@ export default class index extends PureComponent {
       })
     }
     try {
-      let data = await this.fetch.fetchCollege()
+      let data = await this.fetch.fetchCollegeWdata()
       this.dataArr=data
       this.setState({isLoading:false,refreshing:false,data}) 
     } catch (error) {

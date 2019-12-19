@@ -132,7 +132,7 @@ export default class index extends PureComponent {
       return <SpinnerScreen message="Refreshing details" />
 
     if(this.state.isLoading)
-      return <SpinnerScreen message="Loading colleges" />
+      return <SpinnerScreen message="Loading Posts" />
 
     if(!this.state.data.length && !this.state.value.length)
       return <EmptyScreen message="No data to show" />

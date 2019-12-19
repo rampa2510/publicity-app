@@ -100,13 +100,7 @@ export default class App extends PureComponent {
 
   // function to validate phone number
   validatePhone=()=>{
-    if(this.state.phone.trim().length!==10){
-      this.setState(prevState=>{
-        let errArr = [...prevState.error,"phone"]
-        return { error : errArr}
-      })
-      return
-    }
+    
     return true
   }
 
@@ -491,7 +485,7 @@ export default class App extends PureComponent {
 
   handleSubmitBtnClick=async ()=>{
     const { phone,name,college,post,username } = this.state
-    let condition = (phone.trim().length===10 || phone.trim().length===11) && name.trim().length && post.trim().length
+    let condition = phone.trim().length && name.trim().length && post.trim().length
     if(condition){
     this.setState({isReqLoading:true})
       
